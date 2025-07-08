@@ -75,7 +75,6 @@ def process_file(path, rules, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     tree.write(output_path, encoding="utf-8", xml_declaration=True)
 
-# ----------------- MAIN -------------------
 
 if not os.path.isfile(INPUT_ZIP):
     print("❌ permissions.zip not found.")
@@ -110,3 +109,13 @@ for root_dir, dirs, files in os.walk(EXTRACTED_DIR):
 
 shutil.make_archive(ZIP_OUT.replace(".zip", ""), 'zip', os.path.join(OUTPUT_DIR, EXTRACTED_DIR))
 print(f"✅ Done. Output zip: {ZIP_OUT}")
+
+ZIP_NAME = "patched_permission"
+OUTPUT_DIR = os.path.join(OUTPUT_DIR, EXTRACTED_DIR)
+
+if os.path.exists(OUTPUT_DIR):
+    shutil.make_archive(ZIP_NAME, 'zip', OUTPUT_DIR)
+    print(f"✅ Done. Output zip: {ZIP_NAME}.zip")
+else:
+    print(f"❌ Output directory not found: {OUTPUT_DIR}")
+
