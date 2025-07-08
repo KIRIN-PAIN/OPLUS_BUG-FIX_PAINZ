@@ -118,4 +118,11 @@ if os.path.exists(OUTPUT_DIR):
     print(f"✅ Done. Output zip: {ZIP_NAME}.zip")
 else:
     print(f"❌ Output directory not found: {OUTPUT_DIR}")
+    #test
+zip_output_dir = os.path.join("output", "permission_patched")
+if os.path.exists(zip_output_dir):
+    shutil.make_archive("patched_permission", 'zip', zip_output_dir)
+    print("✅ Created patched_permission.zip in root.")
+else:
+    print(f"❌ Directory to zip not found: {zip_output_dir}")
 
