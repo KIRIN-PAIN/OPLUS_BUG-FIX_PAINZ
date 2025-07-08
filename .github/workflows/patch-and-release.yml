@@ -1,4 +1,4 @@
-name: Patch Permissions Xmls
+name: Patch Permissions xmls
 
 on:
   workflow_dispatch:
@@ -6,7 +6,6 @@ on:
 jobs:
   patch:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -17,14 +16,11 @@ jobs:
           python-version: '3.x'
 
       - name: Run patch script
-        run: |
-          python scripts/modify_xmls.py
+        run: python scripts/modify_xmls.py
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Upload patched zip to release
+        uses: softprops/action-gh-release@v1
         with:
-          name: "Patched Permissions - ${{ github.run_number }}"
-          tag_name: "patch-${{ github.run_number }}"
-          files: patched_permission.zip
+          files: patched_permissions.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
