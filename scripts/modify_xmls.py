@@ -125,4 +125,19 @@ if os.path.exists(zip_output_dir):
     print("✅ Created patched_permission.zip in root.")
 else:
     print(f"❌ Directory to zip not found: {zip_output_dir}")
+def extract_zip(zip_path, extract_to):
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+        
+    contents = os.listdir(extract_to)
+    if "permissions" not in contents:
+        temp_dir = os.path.join(extract_to, "temp")
+        os.makedirs(temp_dir, exist_ok=True)
+
+        os.makedirs(os.path.join(extract_to, "permissions"), exist_ok=True)
+
+        for item in contents:
+            item_path = os.path.join(extract_to, item)
+            if item.endswith(".xml") and os.path.isfile(item_path):
+                shutil.move(item_path, os.path.join(extract_to, "permissions", item))
 
