@@ -1,4 +1,4 @@
-name: Patch Permissions Xmls
+name: Patch Permission XMLs and Release
 
 on:
   workflow_dispatch:
@@ -19,12 +19,19 @@ jobs:
       - name: Run patch script
         run: |
           python scripts/modify_xmls.py
+          ls -la
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Create Git Tag (patch-1)
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag patch-1
+          git push origin patch-1
+
+      - name: Upload patched zip to release
+        uses: softprops/action-gh-release@v1
         with:
-          name: "Patched Permissions - ${{ github.run_number }}"
-          tag_name: "patch-${{ github.run_number }}"
+          tag_name: patch-1
           files: patched_permission.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
