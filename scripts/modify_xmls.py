@@ -5,9 +5,9 @@ import shutil
 import sys
 
 INPUT_ZIP = "permissions.zip"
-EXTRACTED_DIR = "permissions"
-OUTPUT_DIR = "modified"
-ZIP_OUT = "patched_permissions.zip"
+OUTPUT_DIR = "output"
+EXTRACTED_DIR = "permission_patched"
+ZIP_OUT = "patched_permission.zip"
 
 TARGETS = {
     "oplus.feature.android.xml": {
