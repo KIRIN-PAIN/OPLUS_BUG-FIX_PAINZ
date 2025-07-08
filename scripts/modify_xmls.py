@@ -110,7 +110,7 @@ for root_dir, dirs, files in os.walk(EXTRACTED_DIR):
 shutil.make_archive(ZIP_OUT.replace(".zip", ""), 'zip', os.path.join(OUTPUT_DIR, EXTRACTED_DIR))
 print(f"✅ Done. Output zip: {ZIP_OUT}")
 
-ZIP_NAME = "patched_permission"
+ZIP_NAME = "patched_permissions"
 OUTPUT_DIR = os.path.join(OUTPUT_DIR, EXTRACTED_DIR)
 
 if os.path.exists(OUTPUT_DIR):
@@ -121,7 +121,7 @@ else:
     #test
 zip_output_dir = os.path.join("output", "permission_patched")
 if os.path.exists(zip_output_dir):
-    shutil.make_archive("patched_permission", 'zip', zip_output_dir)
+    shutil.make_archive("patched_permissions", 'zip', zip_output_dir)
     print("✅ Created patched_permission.zip in root.")
 else:
     print(f"❌ Directory to zip not found: {zip_output_dir}")
